@@ -1,5 +1,5 @@
 
-import 'package:e_commerce/home/food_page_body.dart';
+import 'package:e_commerce/pages/home/food_page_body.dart';
 import 'package:e_commerce/utils/colors.dart';
 import 'package:e_commerce/utils/dimensions.dart';
 import 'package:e_commerce/widget/big_text.dart';
@@ -16,6 +16,8 @@ class MainFoodPage extends StatefulWidget {
 class _MainFoodPageState extends State<MainFoodPage> {
   @override
   Widget build(BuildContext context) {
+    Dimensions.init(context);
+
     return Scaffold(
       body: Column(
         children: [
@@ -52,7 +54,9 @@ class _MainFoodPageState extends State<MainFoodPage> {
               ],
             ),
           ),
-          FoodPageBody(),
+          Expanded(child: SingleChildScrollView(
+            child: FoodPageBody(),
+          )),
         ],
 
       ),
