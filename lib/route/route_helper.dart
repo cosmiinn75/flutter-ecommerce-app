@@ -22,7 +22,10 @@ class RouteHelper {
       , transition: Transition.fadeIn),
     GetPage(name: recommendedFood, page: () {
       var pageId = Get.parameters['pageId'];
-      return RecommendedFoodDetail(pageId: int.parse(pageId!));}, transition: Transition.fadeIn)
+      return RecommendedFoodDetail(pageId: int.parse(pageId!));}, transition: Transition.fadeIn),
+
   ];
+
+
 
 }

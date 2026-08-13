@@ -1,9 +1,7 @@
 class CartModel {
   int? id;
   String? name;
-
   int? price;
-
   String? img;
   int? quantity;
   bool? isExist;
