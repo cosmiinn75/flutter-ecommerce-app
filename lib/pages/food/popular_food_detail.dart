@@ -1,18 +1,27 @@
+import 'package:e_commerce/data/controller/popular_product_controller.dart';
+import 'package:e_commerce/pages/home/main_food_page.dart';
+import 'package:e_commerce/route/route_helper.dart';
 import 'package:e_commerce/utils/colors.dart';
 import 'package:e_commerce/utils/dimensions.dart';
 import 'package:e_commerce/widget/big_text.dart';
+import 'package:e_commerce/widget/expandable_text_widget.dart';
 import 'package:e_commerce/widget/food_general_info.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
 
 import '../../widget/app_icon.dart';
 
 class PopularFoodDetail extends StatelessWidget {
-  const PopularFoodDetail({super.key});
+  int pageId;
+  PopularFoodDetail( {super.key , required this.pageId});
 
   @override
   Widget build(BuildContext context) {
     Dimensions.init(context);
-
+    var product = Get.find<PopularProductController>().popularProductList[pageId];
+    Get.find<PopularProductController>().initProduct();
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
@@ -25,7 +34,7 @@ class PopularFoodDetail extends StatelessWidget {
                 width: double.maxFinite,
                 height: Dimensions.calculateHeight(350),
                 decoration: BoxDecoration(
-                  image: DecorationImage(image: AssetImage("assets/image/food1.jfif"),
+                  image: DecorationImage(image: AssetImage("assets/image/${product.img!}"),
                   fit: BoxFit.cover,
                   ),
                   )
@@ -39,11 +48,15 @@ class PopularFoodDetail extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                AppIcon(iconData: Icons.arrow_back_ios,size: 40,),
+                GestureDetector(
+                    onTap: () {
+                      Get.toNamed(RouteHelper.getInitial());
+                    },
+                    child: AppIcon(iconData: Icons.arrow_back_ios,size: 40,)),
                 AppIcon(iconData: Icons.shopping_cart,size: 40,)
               ]
           )),
-          //Main content container
+          //General info about food container
           Positioned(
               left: 0,
               right: 0,
@@ -61,56 +74,72 @@ class PopularFoodDetail extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    FoodGeneralInfo(foodName: "Steak with potatoes",fontSize: 30,),
+                    FoodGeneralInfo(foodName: product.name!,fontSize: 30,),
                     SizedBox(height: Dimensions.calculateHeight(10),),
                     BigText(text: "Introduce",size: 25,color: AppColors.mainBlackColor,),
                     SizedBox(height: Dimensions.calculateHeight(15),),
-                    
+                    Expanded(child: SingleChildScrollView(child: ExpandableTextWidget(text: product.description!)))
                   ],
                 ),
-              )),
+              )
+          ),
+
+
         ],
         
       ),
 
       //Navigation bar
-      bottomNavigationBar: Container(
-        height: Dimensions.calculateHeight(120),
-        padding: EdgeInsets.only(top: Dimensions.calculateHeight(30),bottom: Dimensions.calculateHeight(30),left: Dimensions.calculateWidth(20),right: Dimensions.calculateWidth(20)),
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(Dimensions.calculateHeight(40)),
-              topRight: Radius.circular(Dimensions.calculateHeight(40))
-            ),
-            color: AppColors.buttonBackgroundColor ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Container(
-              padding:  EdgeInsets.only(top:Dimensions.calculateHeight(15),bottom: Dimensions.calculateHeight(15),left: Dimensions.calculateWidth(15),right: Dimensions.calculateWidth(15)),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(Dimensions.calculateHeight(20)),color: Colors.white
+      bottomNavigationBar: GetBuilder<PopularProductController>(builder: (popularProduct) {
+        return Container(
+          margin: EdgeInsets.only(top: Dimensions.calculateHeight(10)),
+          height: Dimensions.calculateHeight(120),
+          padding: EdgeInsets.only(top: Dimensions.calculateHeight(30),bottom: Dimensions.calculateHeight(30),left: Dimensions.calculateWidth(20),right: Dimensions.calculateWidth(20)),
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(Dimensions.calculateHeight(40)),
+                  topRight: Radius.circular(Dimensions.calculateHeight(40))
               ),
-              child: Row(
-                children: [
-                  Icon(Icons.remove,color: AppColors.signColor),
-                  SizedBox(width: Dimensions.calculateWidth(10)),
-                  BigText(text: "0"),
-                  SizedBox(width: Dimensions.calculateWidth(10)),
-                  Icon(Icons.add,color: AppColors.signColor,)
-                ],
+              color: AppColors.buttonBackgroundColor ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              // - 0 +
+              Container(
+                padding:  EdgeInsets.only(top:Dimensions.calculateHeight(15),bottom: Dimensions.calculateHeight(15),left: Dimensions.calculateWidth(15),right: Dimensions.calculateWidth(15)),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(Dimensions.calculateHeight(20)),color: Colors.white
+                ),
+                child: Row(
+                  children: [
+                    GestureDetector(
+                        onTap:() {
+                          popularProduct.setQuantity(false);
+                        },
+                        child: Icon(Icons.remove,color: AppColors.signColor)),
+                    SizedBox(width: Dimensions.calculateWidth(10)),
+                    BigText(text: "${popularProduct.getQuantity()}"),
+                    SizedBox(width: Dimensions.calculateWidth(10)),
+                    GestureDetector(
+                        onTap: () {
+                            popularProduct.setQuantity(true);
+                        },
+                        child: Icon(Icons.add,color: AppColors.signColor,))
+                  ],
+                ),
               ),
-            ),
-            Container(
-              padding:  EdgeInsets.only(top:Dimensions.calculateHeight(15),bottom: Dimensions.calculateHeight(15),left: Dimensions.calculateWidth(15),right: Dimensions.calculateWidth(15)),
-              decoration: BoxDecoration(color: AppColors.mainColor , 
-              borderRadius: BorderRadius.circular(Dimensions.calculateHeight(20))),
-              child: BigText(text: "\$10 | Add to cart", color: Colors.white,),
-            )
-          ],
-        ),
-      ),
+              //Add to cart
+              Container(
+                padding:  EdgeInsets.only(top:Dimensions.calculateHeight(15),bottom: Dimensions.calculateHeight(15),left: Dimensions.calculateWidth(15),right: Dimensions.calculateWidth(15)),
+                decoration: BoxDecoration(color: AppColors.mainColor ,
+                    borderRadius: BorderRadius.circular(Dimensions.calculateHeight(20))),
+                child: BigText(text: "\$${product.price!} | Add to cart", color: Colors.white,),
+              )
+            ],
+          ),
+        );
+      })
     );
   }
 }

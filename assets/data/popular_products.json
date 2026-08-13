@@ -1,0 +1,67 @@
+{
+  "total_size": 5,
+  "type_id": 2,
+  "offset": 0,
+  "products": [
+    {
+      "id": 1,
+      "name": "Steak with Roasted Potatoes",
+      "description": "A juicy grilled beef steak served with crispy roasted potatoes, seasoned with garlic, rosemary, black pepper, and a touch of sea salt. The steak is cooked until tender and flavorful, while the potatoes are golden on the outside and soft on the inside. It is served with a light herb butter sauce and fresh vegetables, making it a rich and satisfying meal for anyone who enjoys classic comfort food.",
+      "price": 18,
+      "stars": 5,
+      "img": "pfood1.jfif",
+      "location": "Bucharest",
+      "created_at": "2026-08-13",
+      "updated_at": "2026-08-13",
+      "type_id": 2
+    },
+    {
+      "id": 2,
+      "name": "Creamy Chicken Pasta",
+      "description": "Tender pieces of chicken breast are cooked in a creamy garlic and parmesan sauce and served over freshly prepared pasta. The dish is finished with herbs, cracked black pepper, and a small amount of parsley for freshness. The sauce is rich without being too heavy, while the chicken remains soft and juicy, creating a balanced meal that works well for both lunch and dinner.",
+      "price": 14,
+      "stars": 4,
+      "img": "pfood2.jfif",
+      "location": "Cluj-Napoca",
+      "created_at": "2026-08-13",
+      "updated_at": "2026-08-13",
+      "type_id": 2
+    },
+    {
+      "id": 3,
+      "name": "Italian Margherita Pizza",
+      "description": "A traditional Italian-style pizza prepared with a thin and slightly crispy crust, fresh tomato sauce, mozzarella cheese, basil leaves, and extra virgin olive oil. The ingredients are kept simple so that every flavor can stand out clearly. The crust develops a light golden color while baking, and the melted mozzarella combines perfectly with the tomato sauce to create a classic and comforting pizza.",
+      "price": 12,
+      "stars": 5,
+      "img": "pfood3.jfif",
+      "location": "Brasov",
+      "created_at": "2026-08-13",
+      "updated_at": "2026-08-13",
+      "type_id": 2
+    },
+    {
+      "id": 4,
+      "name": "Spicy Chicken Rice Bowl",
+      "description": "A flavorful rice bowl made with grilled chicken, steamed rice, fresh vegetables, and a slightly spicy homemade sauce. The chicken is marinated with paprika, garlic, chili, and herbs before being grilled until golden and tender. It is combined with carrots, cucumber, peppers, and spring onions to create a colorful meal with a mix of savory, fresh, and spicy flavors in every bite.",
+      "price": 13,
+      "stars": 4,
+      "img": "pfood4.jfif",
+      "location": "Timisoara",
+      "created_at": "2026-08-13",
+      "updated_at": "2026-08-13",
+      "type_id": 2
+    },
+    {
+      "id": 5,
+      "name": "Salmon with Vegetables",
+      "description": "A fresh salmon fillet cooked until soft and flaky, served alongside a selection of roasted vegetables including broccoli, carrots, peppers, and zucchini. The salmon is seasoned with lemon, garlic, herbs, and black pepper, giving it a light but distinctive flavor. This meal is filling while still feeling fresh and balanced, making it a great option for anyone looking for a protein-rich dish with plenty of vegetables.",
+      "price": 21,
+      "stars": 5,
+      "img": "pfood5.jfif",
+      "location": "Constanta",
+      "created_at": "2026-08-13",
+      "updated_at": "2026-08-13",
+      "type_id": 2
+    }
+  ]
+}

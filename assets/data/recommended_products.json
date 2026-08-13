@@ -1,0 +1,127 @@
+{
+  "total_size": 10,
+  "type_id": 3,
+  "offset": 0,
+  "products": [
+    {
+      "id": 1,
+      "name": "Grilled Chicken with Vegetables",
+      "description": "Tender grilled chicken breast seasoned with garlic, paprika, black pepper, and fresh herbs, served alongside a colorful selection of roasted vegetables including zucchini, bell peppers, carrots, and broccoli. The chicken remains juicy while the vegetables add a fresh and slightly smoky flavor, making this a balanced and satisfying meal.",
+      "price": 15,
+      "stars": 5,
+      "img": "food0.jfif",
+      "location": "Bucharest",
+      "created_at": "2026-08-13",
+      "updated_at": "2026-08-13",
+      "type_id": 3
+    },
+    {
+      "id": 2,
+      "name": "Beef Burger with Fries",
+      "description": "A thick and juicy beef burger served in a toasted bun with melted cheese, lettuce, tomato, onions, and a creamy homemade sauce. It comes with a generous portion of crispy golden fries seasoned with salt and herbs, making it a classic comfort meal with rich and savory flavors.",
+      "price": 14,
+      "stars": 4,
+      "img": "food1.jfif",
+      "location": "Cluj-Napoca",
+      "created_at": "2026-08-13",
+      "updated_at": "2026-08-13",
+      "type_id": 3
+    },
+    {
+      "id": 3,
+      "name": "Creamy Mushroom Pasta",
+      "description": "Fresh pasta covered in a rich and creamy mushroom sauce made with garlic, parmesan cheese, herbs, and a touch of cream. The mushrooms are cooked until golden and tender, giving the dish a deep savory flavor while the parmesan adds richness and a smooth texture.",
+      "price": 13,
+      "stars": 5,
+      "img": "food3.jfif",
+      "location": "Brasov",
+      "created_at": "2026-08-13",
+      "updated_at": "2026-08-13",
+      "type_id": 3
+    },
+    {
+      "id": 4,
+      "name": "Spicy Beef Tacos",
+      "description": "Soft tortillas filled with seasoned beef, fresh tomato, lettuce, onions, cheese, and a spicy homemade sauce. The beef is cooked with chili, cumin, paprika, and garlic, giving every taco a warm and slightly spicy taste that is balanced by the fresh vegetables and creamy cheese.",
+      "price": 12,
+      "stars": 4,
+      "img": "food4.jfif",
+      "location": "Timisoara",
+      "created_at": "2026-08-13",
+      "updated_at": "2026-08-13",
+      "type_id": 3
+    },
+    {
+      "id": 5,
+      "name": "Teriyaki Salmon Rice Bowl",
+      "description": "A soft and flaky salmon fillet glazed with a sweet and savory teriyaki sauce, served over steamed rice with fresh vegetables and sesame seeds. The combination of tender salmon, warm rice, crunchy vegetables, and slightly sweet sauce creates a flavorful and filling meal.",
+      "price": 20,
+      "stars": 5,
+      "img": "food5.jfif",
+      "location": "Constanta",
+      "created_at": "2026-08-13",
+      "updated_at": "2026-08-13",
+      "type_id": 3
+    },
+    {
+      "id": 6,
+      "name": "Chicken Caesar Salad",
+      "description": "A fresh salad made with crispy romaine lettuce, grilled chicken breast, parmesan cheese, crunchy croutons, and a creamy Caesar dressing. The chicken adds a warm and savory flavor while the lettuce and croutons provide freshness and texture, making this a light but satisfying meal.",
+      "price": 11,
+      "stars": 4,
+      "img": "food6.jfif",
+      "location": "Iasi",
+      "created_at": "2026-08-13",
+      "updated_at": "2026-08-13",
+      "type_id": 3
+    },
+    {
+      "id": 7,
+      "name": "BBQ Chicken Pizza",
+      "description": "A freshly baked pizza topped with barbecue chicken, mozzarella cheese, red onions, tomato sauce, and a smoky barbecue drizzle. The crust is thin and crispy around the edges while remaining soft inside, creating a rich combination of smoky, sweet, and savory flavors.",
+      "price": 16,
+      "stars": 5,
+      "img": "food7.jfif",
+      "location": "Sibiu",
+      "created_at": "2026-08-13",
+      "updated_at": "2026-08-13",
+      "type_id": 3
+    },
+    {
+      "id": 8,
+      "name": "Chicken Curry with Rice",
+      "description": "Tender pieces of chicken slowly cooked in a creamy curry sauce made with coconut milk, garlic, ginger, tomatoes, and aromatic spices. The curry is served with warm steamed rice that absorbs the flavorful sauce, creating a comforting dish with a rich and slightly spicy taste.",
+      "price": 14,
+      "stars": 5,
+      "img": "food8.jfif",
+      "location": "Oradea",
+      "created_at": "2026-08-13",
+      "updated_at": "2026-08-13",
+      "type_id": 3
+    },
+    {
+      "id": 9,
+      "name": "Pork Ribs with Potatoes",
+      "description": "Slow-cooked pork ribs covered in a smoky barbecue glaze and served with crispy roasted potatoes. The ribs are cooked until extremely tender and flavorful, while the potatoes are seasoned with garlic, rosemary, and black pepper for a hearty and satisfying combination.",
+      "price": 19,
+      "stars": 4,
+      "img": "food9.jfif",
+      "location": "Ploiesti",
+      "created_at": "2026-08-13",
+      "updated_at": "2026-08-13",
+      "type_id": 3
+    },
+    {
+      "id": 10,
+      "name": "Shrimp Garlic Pasta",
+      "description": "Juicy shrimp sautéed with garlic, butter, herbs, and a small amount of chili, served over freshly cooked pasta. The sauce combines the flavors of garlic, lemon, parmesan, and butter, creating a rich but fresh seafood pasta with a light spicy finish.",
+      "price": 18,
+      "stars": 5,
+      "img": "food10.jfif",
+      "location": "Bucharest",
+      "created_at": "2026-08-13",
+      "updated_at": "2026-08-13",
+      "type_id": 3
+    }
+  ]
+}
