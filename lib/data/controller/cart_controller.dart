@@ -7,76 +7,74 @@ import '../model/cart_model.dart';
 import '../model/products_model.dart';
 
 class CartController extends GetxController {
-
   final CartRepo cartRepo;
 
   CartController({required this.cartRepo});
 
-  Map<int,CartModel> _items = {};
+  Map<int, CartModel> _items = {};
 
-  Map<int,CartModel> get items => _items;
+  Map<int, CartModel> get items => _items;
 
-  void addItem(ProductModel product , int quantity){
-        var totalQuantity = 0;
-        if(_items.containsKey(product.id)){
-          _items.update(product.id!, (value) {
-            totalQuantity = value.quantity! + quantity;
+  void addItem(ProductModel product, int quantity) {
+    var totalQuantity = 0;
+    if (_items.containsKey(product.id)) {
+      _items.update(product.id!, (value) {
+        totalQuantity = value.quantity! + quantity;
 
+        return CartModel(
+          id: value.id,
+          name: value.name,
+          price: value.price,
+          img: value.img,
+          quantity: value.quantity! + quantity,
+          isExist: true,
+          time: DateTime.now().toString(),
+          product: product,
+        );
+      });
 
-
-            return CartModel(
-                id : value.id,
-                name: value.name ,
-                price: value.price ,
-                img: value.img ,
-                quantity: value.quantity! + quantity ,
-                isExist: true,
-                time: DateTime.now().toString()
-            );
-
-
-          });
-
-          if(totalQuantity <= 0){
-            items.remove(product.id);
-          }
-        }
-        else {
-          if(quantity > 0){
+      if (totalQuantity <= 0) {
+        items.remove(product.id);
+      }
+    } else {
+      if (quantity > 0) {
         _items.putIfAbsent(product.id!, () {
           return CartModel(
-            id : product.id,
-            name: product.name ,
-            price: product.price ,
-            img: product.img ,
-            quantity: quantity ,
+            id: product.id,
+            name: product.name,
+            price: product.price,
+            img: product.img,
+            quantity: quantity,
             isExist: true,
-            time: DateTime.now().toString()
-           );
-            }
-              );
-        }
-          else {
-            Get.snackbar("Item count", "You should add at least one item to the cart", backgroundColor: AppColors.mainColor , colorText: Colors.white);
-          }
-        }
+            time: DateTime.now().toString(),
+            product: product,
+          );
+        });
+      } else {
+        Get.snackbar(
+          "Item count",
+          "You should add at least one item to the cart",
+          backgroundColor: AppColors.mainColor,
+          colorText: Colors.white,
+        );
+      }
+    }
+    cartRepo.addToCart(getItems);
+    update();
   }
 
-
-  bool existInCart(ProductModel product){
-    if(_items.containsKey(product.id)){
-      return  true;
+  bool existInCart(ProductModel product) {
+    if (_items.containsKey(product.id)) {
+      return true;
     }
     return false;
   }
 
-
-  int getQuantity(ProductModel product){
+  int getQuantity(ProductModel product) {
     var quantity = 0;
-    if(_items.containsKey(product.id)){
-      _items.forEach((key,value) {
-
-        if(key == product.id){
+    if (_items.containsKey(product.id)) {
+      _items.forEach((key, value) {
+        if (key == product.id) {
           quantity = value.quantity!;
         }
       });
@@ -85,19 +83,28 @@ class CartController extends GetxController {
   }
 
   int get totalItems {
-      var totalQuantity = 0;
-      _items.forEach((key,value) {
-        totalQuantity += value.quantity!;
-      });
+    var totalQuantity = 0;
+    _items.forEach((key, value) {
+      totalQuantity += value.quantity!;
+    });
 
-      return totalQuantity;
-}
+    return totalQuantity;
+  }
 
-  List<CartModel> get getItems{
-
-    return _items.entries.map((e){
-
+  List<CartModel> get getItems {
+    return _items.entries.map((e) {
       return e.value;
     }).toList();
+
+
+  }
+
+  int get totalAmount{
+    var total = 0;
+
+    _items.forEach((key,value) {
+      total += value.price! * value.quantity!;
+    });
+    return total;
   }
 }

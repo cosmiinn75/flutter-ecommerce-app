@@ -4,6 +4,7 @@ import 'package:e_commerce/pages/cart/cart_page.dart';
 import 'package:e_commerce/pages/food/recommended_food_detail.dart';
 import 'package:e_commerce/pages/home/food_page_body.dart';
 import 'package:e_commerce/pages/home/main_food_page.dart';
+import 'package:e_commerce/pages/splash/splash_page.dart';
 import 'package:e_commerce/route/route_helper.dart';
 import 'package:e_commerce/utils/dimensions.dart';
 import 'package:flutter/material.dart';
@@ -28,17 +29,19 @@ class MyApp extends StatelessWidget {
     Dimensions.init(context);
 
 
-    Get.find<PopularProductController>().getPopularProductList();
+    return GetBuilder<PopularProductController>(builder: (_) {
+      return GetBuilder<RecommendedProductController>(builder: (_) {
 
-    Get.find<RecommendedProductController>().getRecommendedProductList();
 
-    return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      home: MainFoodPage(),
-       initialRoute: RouteHelper.initial,
-       getPages: RouteHelper.routes,
-    );
+        return GetMaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Flutter Demo',
+          // home: SplashScreen(),
+          initialRoute: RouteHelper.getSplash(),
+          getPages: RouteHelper.routes,
+        );
+      });
+    });
   }
 }
 
