@@ -1,3 +1,5 @@
+import 'package:e_commerce/pages/account/account_page.dart';
+import 'package:e_commerce/pages/auth/sign_up_page.dart';
 import 'package:e_commerce/pages/cart/cart_history.dart';
 import 'package:e_commerce/pages/cart/cart_page.dart';
 import 'package:e_commerce/pages/home/main_food_page.dart';
@@ -18,9 +20,9 @@ class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
   List pages = [
     MainFoodPage(),
-    Container(child: Center(child: Text("Next page")),),
+   SignUpPage(),
     CartHistory(),
-    Container(child: Center(child: Text("Next next next page")),),
+    AccountPage()
 
   ];
 

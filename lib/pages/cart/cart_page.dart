@@ -269,67 +269,68 @@ class CartPage extends StatelessWidget {
               right: Dimensions.calculateWidth(20),
             ),
             decoration: BoxDecoration(
+
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(Dimensions.calculateHeight(40)),
                 topRight: Radius.circular(Dimensions.calculateHeight(40)),
               ),
-              color: AppColors.buttonBackgroundColor,
+              color: Theme.of(context).scaffoldBackgroundColor,
             ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                // - 0 +
-                Container(
+            child: cartController.getItems.length > 0 ? Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              // - 0 +
+              Container(
+                padding: EdgeInsets.only(
+                  top: Dimensions.calculateHeight(15),
+                  bottom: Dimensions.calculateHeight(15),
+                  left: Dimensions.calculateWidth(15),
+                  right: Dimensions.calculateWidth(15),
+                ),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(
+                    Dimensions.calculateHeight(20),
+                  ),
+                  color: Colors.white,
+                ),
+                child: Row(
+                  children: [
+
+                    SizedBox(width: Dimensions.calculateWidth(10)),
+                    BigText(text: "\$${cartController.totalAmount}"),
+                    SizedBox(width: Dimensions.calculateWidth(10)),
+
+                  ],
+                ),
+              ),
+              //Add to cart
+              GestureDetector(
+                onTap: () {
+
+                  cartController.addToHistoryList();
+                },
+                child: Container(
                   padding: EdgeInsets.only(
                     top: Dimensions.calculateHeight(15),
                     bottom: Dimensions.calculateHeight(15),
-                    left: Dimensions.calculateWidth(15),
-                    right: Dimensions.calculateWidth(15),
+                    left: Dimensions.calculateWidth(25),
+                    right: Dimensions.calculateWidth(25),
                   ),
                   decoration: BoxDecoration(
+                    color: AppColors.mainColor,
                     borderRadius: BorderRadius.circular(
                       Dimensions.calculateHeight(20),
                     ),
+                  ),
+                  child: BigText(
+                    text: "Checkout",
                     color: Colors.white,
                   ),
-                  child: Row(
-                    children: [
-
-                      SizedBox(width: Dimensions.calculateWidth(10)),
-                      BigText(text: "\$${cartController.totalAmount}"),
-                      SizedBox(width: Dimensions.calculateWidth(10)),
-
-                    ],
-                  ),
                 ),
-                //Add to cart
-                GestureDetector(
-                  onTap: () {
-
-                  cartController.addToHistoryList();
-                  },
-                  child: Container(
-                    padding: EdgeInsets.only(
-                      top: Dimensions.calculateHeight(15),
-                      bottom: Dimensions.calculateHeight(15),
-                      left: Dimensions.calculateWidth(25),
-                      right: Dimensions.calculateWidth(25),
-                    ),
-                    decoration: BoxDecoration(
-                      color: AppColors.mainColor,
-                      borderRadius: BorderRadius.circular(
-                        Dimensions.calculateHeight(20),
-                      ),
-                    ),
-                    child: BigText(
-                      text: "Checkout",
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
+          ) : Container(),
           );
         },
       ),

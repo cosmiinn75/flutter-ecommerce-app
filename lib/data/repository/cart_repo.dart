@@ -17,6 +17,7 @@ class CartRepo {
 
       // sharedPreferences.remove(AppConstants.CART_HISTORY_LIST);
       // sharedPreferences.remove(AppConstants.CART_LIST);
+      // return;
 
       var time = DateTime.now().toString();
       cart = [];
