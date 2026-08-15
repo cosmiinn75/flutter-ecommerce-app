@@ -27,8 +27,6 @@ class CartRepo {
 
       sharedPreferences.setStringList(AppConstants.CART_LIST, cart);
 
-
-
     }
     
     List<CartModel> getCartList(){
@@ -71,6 +69,9 @@ class CartRepo {
       clearCart();
       sharedPreferences.setStringList(AppConstants.CART_HISTORY_LIST, cartHistory);
     }
+
+
+
 
     void clearCart() {
       cart = [];
