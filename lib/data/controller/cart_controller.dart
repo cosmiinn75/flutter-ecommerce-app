@@ -13,6 +13,10 @@ class CartController extends GetxController {
 
   Map<int, CartModel> _items = {};
 
+
+
+  List<CartModel> storageItems  = [];
+
   Map<int, CartModel> get items => _items;
 
   void addItem(ProductModel product, int quantity) {
@@ -106,5 +110,32 @@ class CartController extends GetxController {
       total += value.price! * value.quantity!;
     });
     return total;
+  }
+
+  List<CartModel> getCartData(){
+
+    setCart(cartRepo.getCartList());
+
+    return storageItems;
+  }
+
+  void setCart(List<CartModel> items){
+    storageItems = items;
+
+    _items.clear();
+
+    for(int i = 0 ; i < storageItems.length ; i++){
+      _items.putIfAbsent(storageItems[i].id!, () => storageItems[i]);
+    }
+  }
+
+  void addToHistoryList(){
+    cartRepo.addToCartHistoryList();
+    clear();
+  }
+
+  void clear(){
+    _items.clear();
+    update();
   }
 }

@@ -15,6 +15,9 @@ class CartPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+
+
     return Scaffold(
       body: Stack(
         children: [
@@ -301,6 +304,7 @@ class CartPage extends StatelessWidget {
                 GestureDetector(
                   onTap: () {
 
+                  cartController.addToHistoryList();
                   },
                   child: Container(
                     padding: EdgeInsets.only(

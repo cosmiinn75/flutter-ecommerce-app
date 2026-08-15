@@ -24,6 +24,8 @@ class PopularFoodDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Dimensions.init(context);
+
+
     var product =
         Get.find<PopularProductController>().popularProductList[pageId];
     Get.find<PopularProductController>().initProduct(
