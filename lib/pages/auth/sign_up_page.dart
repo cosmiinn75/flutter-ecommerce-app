@@ -114,6 +114,7 @@ class SignUpPage extends StatelessWidget {
 
                 onTap: (){
                   _registration(authController);
+
                 },
 
                 child: Container(

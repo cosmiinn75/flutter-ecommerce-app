@@ -59,7 +59,10 @@ class AuthRepo {
         "token",
         "fake-login-jwt-token",
       );
-
+      await sharedPreferences.setString("password","123456");
+      await sharedPreferences.setString("email", "test@test.com");
+      await sharedPreferences.setString("name", "cosmin");
+      await sharedPreferences.setString("phone", "0123456789");
       return true;
     }
 
@@ -73,4 +76,14 @@ class AuthRepo {
 
   bool userLoggedIn(){
         return sharedPreferences.containsKey("token");}
+
+  bool clearSharedData(){
+        sharedPreferences.remove("token");
+        sharedPreferences.remove("email");
+        sharedPreferences.remove("password");
+        sharedPreferences.remove("phone");
+        // apiClient.token= '';
+
+        return true;
+  }
 }

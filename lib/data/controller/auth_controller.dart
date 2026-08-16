@@ -51,4 +51,8 @@ Future<ResponseModel> registration(SignupBody signupBody) async{
       return authRepo.userLoggedIn();
     }
 
+    bool clearSharedData(){
+      return authRepo.clearSharedData();
+    }
+
 }
