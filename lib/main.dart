@@ -1,6 +1,7 @@
 import 'package:e_commerce/data/controller/cart_controller.dart';
 import 'package:e_commerce/data/controller/popular_product_controller.dart';
 import 'package:e_commerce/data/controller/recommended_product_controller.dart';
+import 'package:e_commerce/pages/auth/sign_in_page.dart';
 import 'package:e_commerce/pages/auth/sign_up_page.dart';
 import 'package:e_commerce/pages/cart/cart_page.dart';
 import 'package:e_commerce/pages/food/recommended_food_detail.dart';
@@ -42,9 +43,9 @@ class MyApp extends StatelessWidget {
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',
-          home: SignUpPage(),
-          // initialRoute: RouteHelper.getSplash(),
-          // getPages: RouteHelper.routes,
+          // home: SignInPage(),
+          initialRoute: RouteHelper.getSplash(),
+          getPages: RouteHelper.routes,
         );
       });
     });

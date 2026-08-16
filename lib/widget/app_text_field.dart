@@ -9,7 +9,8 @@ class AppTextField extends StatelessWidget {
   final TextEditingController textController;
   final String hintText;
   final IconData iconData;
-  const AppTextField({super.key,required this.iconData ,required this.textController,required this.hintText});
+  final bool privateInfo;
+  const AppTextField({super.key,required this.iconData ,required this.textController,required this.hintText, this.privateInfo = false});
 
 
   @override
@@ -38,6 +39,7 @@ class AppTextField extends StatelessWidget {
         right: Dimensions.calculateWidth(15),
       ),
       child: TextField(
+        obscureText: privateInfo,
         controller: textController,
         decoration: InputDecoration(
           hintText: hintText,

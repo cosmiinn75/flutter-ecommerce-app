@@ -1,45 +1,37 @@
 import 'dart:math';
 
 import 'package:e_commerce/base/custom_loader.dart';
-import 'package:e_commerce/base/show_custom_snackbar.dart';
-import 'package:e_commerce/data/controller/auth_controller.dart';
-import 'package:e_commerce/data/model/signup_body_model.dart';
+import 'package:e_commerce/pages/auth/sign_up_page.dart';
 import 'package:e_commerce/route/route_helper.dart';
 import 'package:e_commerce/utils/colors.dart';
 import 'package:e_commerce/utils/dimensions.dart';
 import 'package:e_commerce/widget/app_text_field.dart';
 import 'package:e_commerce/widget/big_text.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
 
-class SignUpPage extends StatelessWidget {
-  const SignUpPage({super.key});
+import '../../base/show_custom_snackbar.dart';
+import '../../data/controller/auth_controller.dart';
+
+class SignInPage extends StatelessWidget {
+  const SignInPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     var emailController = TextEditingController();
     var passwordController = TextEditingController();
-    var nameController = TextEditingController();
-    var phoneController = TextEditingController();
 
-    var signupImages = [
-      "t.jfif",
-      "g.jpg",
-      "f.png"
-    ];
 
-    void _registration(AuthController authController){
-      String name = nameController.text.trim();
-      String phone = phoneController.text.trim();
+    void _login(AuthController authController){
       String email = emailController.text.trim();
       String password = passwordController.text.trim();
 
-      if(name.isEmpty) {
-          showCustomSnackBar("Type in your name",title: "Name");
-      }else if(phone.isEmpty){
-        showCustomSnackBar("Type in your phone number",title: "Phone number");
-      }else if(email.isEmpty){
+
+       if(email.isEmpty){
         showCustomSnackBar("Type in your email",title: "Email address");
       }else if(!GetUtils.isEmail(email)) {
         showCustomSnackBar("Type in a valid email",title: "Valid email address");
@@ -49,25 +41,22 @@ class SignUpPage extends StatelessWidget {
         showCustomSnackBar("Password must have at least 6 characters",title: "Password not long enough");
       }else {
         showCustomSnackBar("All went well",title: "Perfect");
-        SignupBody signupBody = SignupBody(name: name, phone: phone, email: email, password: password);
-        authController.registration(signupBody).then((status){
+
+        authController.login(email,password).then((status){
           if(status.isSuccess){
             Get.toNamed(RouteHelper.getInitial());
           }else {
-           showCustomSnackBar(status.message);
+            showCustomSnackBar(status.message);
           }
         });
       }
 
     }
 
-
-
     return Scaffold(
       backgroundColor: Colors.white,
-      body: GetBuilder<AuthController>(builder: (authController){
-        return authController.isLoading ? CustomLoader(): SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
+      body: GetBuilder<AuthController>(builder: (authController) {
+        return authController.isLoading? CustomLoader() : SingleChildScrollView(
           child: Column(
             children: [
               Container(
@@ -84,6 +73,31 @@ class SignUpPage extends StatelessWidget {
                   ),
                 ),
               ),
+              Container(
+                width: double.maxFinite,
+                margin: EdgeInsets.only(left: Dimensions.calculateWidth(20)),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Hello",
+                      style: TextStyle(
+                        fontSize: Dimensions.calculateHeight(60),
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Text(
+                      "Sign into your account",
+                      style: TextStyle(
+                        fontSize: Dimensions.calculateHeight(20),
+                        // fontWeight: FontWeight.bold,
+                        color: Colors.grey[500],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: Dimensions.calculateHeight(20),),
               AppTextField(
                 iconData: Icons.email,
                 textController: emailController,
@@ -94,28 +108,36 @@ class SignUpPage extends StatelessWidget {
                 iconData: Icons.password_sharp,
                 textController: passwordController,
                 privateInfo: true,
+
                 hintText: "Password",
               ),
-              SizedBox(height: Dimensions.calculateHeight(20)),
-              AppTextField(
-                iconData: Icons.person,
-                textController: nameController,
-                hintText: "Name",
+              SizedBox(height: Dimensions.calculateHeight(30)),
+              Container(
+                margin: EdgeInsets.only(right: Dimensions.calculateHeight(15)),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    RichText(
+                      text: TextSpan(
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () => Get.back(),
+                        text: "Sign into your account",
+                        style: TextStyle(
+                          color: Colors.grey[500],
+                          fontSize: Dimensions.calculateHeight(17),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-              SizedBox(height: Dimensions.calculateHeight(20)),
-              AppTextField(
-                iconData: Icons.phone,
-                textController: phoneController,
-                hintText: "Phone",
-              ),
-              SizedBox(height: Dimensions.calculateHeight(40)),
+              SizedBox(height: Dimensions.screenHeight * 0.04),
 
+              //sign in button
               GestureDetector(
-
                 onTap: (){
-                  _registration(authController);
+                  _login(authController);
                 },
-
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(
@@ -127,53 +149,39 @@ class SignUpPage extends StatelessWidget {
                   height: Dimensions.screenHeight / 13,
                   child: Center(
                     child: BigText(
-                      text: "Sign up",
+                      text: "Sign in",
                       size: Dimensions.calculateHeight(30),
                       color: Colors.white,
                     ),
                   ),
                 ),
               ),
-              SizedBox(height: Dimensions.calculateHeight(10)),
+
+              SizedBox(height: Dimensions.screenHeight * 0.04),
               RichText(
                 text: TextSpan(
-                  recognizer: TapGestureRecognizer()..onTap = () => Get.back(),
-                  text: "Have an account already?",
+                  text: "Don\'t have an account? ",
                   style: TextStyle(
                     color: Colors.grey[500],
                     fontSize: Dimensions.calculateHeight(17),
                   ),
+                  children: [
+                    TextSpan(
+                      recognizer: TapGestureRecognizer()..onTap = ()=> Get.to(()=>SignUpPage(),transition: Transition.fade),
+                      text: "Create",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.mainBlackColor,
+                        fontSize: Dimensions.calculateHeight(17),
+                      ),
+                    ),
+                  ],
                 ),
               ),
-              SizedBox(height: Dimensions.screenHeight*0.03),
-              RichText(
-                text: TextSpan(
-                  text:"Sign up using one of the following methods",
-                  style: TextStyle(
-                    color: Colors.grey[500],
-                    fontSize: Dimensions.calculateHeight(17),
-                  ),
-                ),
-              ),
-              Wrap(
-                children: List.generate(3, (index)=>Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: CircleAvatar(
-                    radius: Dimensions.calculateHeight(30),backgroundImage: AssetImage("assets/image/${signupImages[index]}"),
-                  ),
-                )),
-              )
             ],
           ),
         );
       })
     );
-
-
-
-
   }
-
-
-
 }
